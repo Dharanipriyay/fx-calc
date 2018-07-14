@@ -1,0 +1,49 @@
+
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
+	integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+
+<div class="header">
+	<h3 class="title">FX calucaltor</h3>
+</div>
+<form class="container padding-top-20" name="calForm">
+	<div class="row">
+		<div class="col-sm-5 col-lg-5 col-md-5 col-xs-12">
+			<select class="form-control" name="exchange-rate-from-country" ng-model="selecectedsender" ng-change="changeSenderCountry()">
+				<option value="" disabled hidden selected>From Country</option>
+				<option ng-repeat="scountry in countryList" value={{scountry.code}}>{{scountry.name}}</option>
+			</select>
+		</div>
+		<div class="col-sm-2 col-lg-2 col-md-2 col-xs-12 text-center padding-10"></div>
+		<div class="col-sm-5 col-lg-5 col-md-5 col-xs-12">
+			<select class="form-control" name="exchange-rate-to-country" ng-model="selecectedreceiver" ng-change="changeReceiverCountry()">
+				<option value="" disabled hidden selected>To Country</option>
+				<option ng-repeat="rcountry in countryList" value={{rcountry.code}}>{{rcountry.name}}</option>
+			</select>
+		</div>
+	</div>
+	<div class="padding-top-20"></div>
+	<div class="row">
+		<div class="col-sm-4 col-lg-4 col-md-4 col-xs-4 padding-amount">
+			<input class="form-control" name="exchange-rate-send-amount" type="number" placeholder="Send Amount" ng-model="sendamt"
+				ng-model-options="{debounce: 800}" ng-change="calucaletRecAmount()" />
+				  <span style="color:red" ng-show="sendamtInvalid"">Amount is required/invalid.</span>
+
+		</div>
+		<div class="col-sm-1 col-lg-1 col-md-1 col-xs-1 padding-currency float-left">
+			<label for="exchange-rate-send-amount">{{sendCurrency}}</label>
+		</div>
+		<div class="col-sm-2 col-lg-2 col-md-2 col-xs-2 text-center">
+			<i class="fas fa-arrows-alt-h exchange-rate-arrows"></i>
+		</div>
+		<div class="col-sm-4 col-lg-4 col-md-4 col-xs-4 padding-amount">
+			<input class="form-control " name="exchange-rate-receive-amount" type="number" placeholder="Receive amount" ng-model="recvamt"
+				ng-change="calucaletSenderAmount()" ng-model-options="{debounce: 800}" />
+				  <span style="color:red" ng-show="recAmtInvalid">Amount is required/invalid.</span>
+		</div>
+		<div class=" col-sm-1 col-lg-1 col-md-1 col-xs-1 padding-currency float-left">
+			<label for="exchange-rate-receive-amount">{{receiveCurrency}}</label>
+		</div>
+	</div>
+	<div class="padding-top-20"></div>
+</form>
